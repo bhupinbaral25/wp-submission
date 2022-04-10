@@ -1,0 +1,26 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name  snipe-it.local www.snipe-it.local;
+    root   /var/www/snipeit/public;
+    index  index.php;
+    
+    access_log /var/log/nginx/snipe-it.local.access.log;
+    error_log /var/log/nginx/snipe-it.local.error.log;
+
+    client_max_body_size 100M;
+  
+    autoindex off;
+
+    location / {
+    try_files $uri $uri/ /index.php$is_args$args;
+      }
+
+    location ~ \.php$ {
+         include snippets/fastcgi-php.conf;
+         fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+         include fastcgi_params;
+         fastcgi_intercept_errors on;
+    }
+}
