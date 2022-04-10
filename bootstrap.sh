@@ -1,4 +1,4 @@
-#!/usr/bin/  bash
+#!/usr/bin/env bash
 
 echo "Up Vagrant"
 sudo apt update -y
@@ -34,7 +34,6 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 echo "getting snipeit in device"
 cd /var/www/
-rm -rf snipeit
 sudo git clone https://github.com/snipe/snipe-it snipeit
 sudo cp /var/www/snipeit/.env.example /var/www/snipeit/.env
 
